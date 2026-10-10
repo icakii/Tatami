@@ -21,7 +21,13 @@ function RequireAuth({ children }: { children: ReactNode }) {
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0)
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    // Arriving on /#section from another page: wait for the landing to render.
+    const timer = window.setTimeout(() => document.getElementById(hash.slice(1))?.scrollIntoView(), 120)
+    return () => window.clearTimeout(timer)
   }, [pathname, hash])
   return null
 }
