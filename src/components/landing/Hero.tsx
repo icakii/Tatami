@@ -1,5 +1,5 @@
-import { motion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
-import { useRef } from 'react'
+import { AnimatePresence, motion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
@@ -72,6 +72,33 @@ function Mat({
   )
 }
 
+// Cycles through sports in place ("for your karate / judo / football club").
+function RotatingSport({ words, reduced }: { words: string[]; reduced: boolean }) {
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    if (reduced) return
+    const id = window.setInterval(() => setI((n) => (n + 1) % words.length), 2200)
+    return () => window.clearInterval(id)
+  }, [words.length, reduced])
+
+  return (
+    <span className="relative inline-flex overflow-hidden pb-1 align-bottom">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={words[i]}
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: '-100%', opacity: 0 }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="inline-block text-straw"
+        >
+          {words[i]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
 export function Hero() {
   const { t } = useTranslation()
   const reduced = useReducedMotion()
@@ -106,7 +133,7 @@ export function Hero() {
             {t('hero.eyebrow')}
           </motion.p>
           <h1 className="mt-6 font-display text-4xl font-bold uppercase leading-[1.05] tracking-wide text-shiro sm:text-5xl lg:text-6xl">
-            {t('hero.title')
+            {t('hero.titleBefore')
               .split(' ')
               .map((word, i) => (
                 <span key={i} className="inline-block overflow-hidden pb-1 align-bottom">
@@ -120,6 +147,19 @@ export function Hero() {
                   </motion.span>
                 </span>
               ))}
+            <span className="inline-block whitespace-nowrap">
+              <RotatingSport words={t('hero.sports', { returnObjects: true }) as string[]} reduced={reduced} />
+            <span className="inline-block overflow-hidden pb-1 align-bottom">
+              <motion.span
+                className="inline-block"
+                initial={reduced ? false : { y: '110%' }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
+              >
+                &nbsp;{t('hero.titleAfter')}
+              </motion.span>
+            </span>
+            </span>
           </h1>
           <motion.p
             initial={reduced ? false : { opacity: 0, y: 16 }}

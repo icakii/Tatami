@@ -3,7 +3,7 @@
     "title": "An app for every student",
     "body": "Every student gets their own account, on their phone, installed like a real app, showing exactly what they need, no digging around.",
     "points": {
-      "belt": "Current belt and progress toward the next",
+      "belt": "Current level or belt and progress toward the next",
       "payments": "Payment status, paid, due soon, or overdue",
       "calendar": "A class calendar with changes clearly marked",
       "offline": "Still works with no connection, the last data stays on the phone"
@@ -61,7 +61,7 @@
     "points": {
       "noAdmin": {
         "title": "Zero admin work",
-        "desc": "Adding students, belt changes, payments, message us and it's done."
+        "desc": "Adding students, level changes, payments, message us and it's done."
       },
       "humanSupport": {
         "title": "Real people, not forms",
@@ -119,12 +119,24 @@
     "order": "Order"
   },
   "hero": {
-    "eyebrow": "The platform for karate clubs",
+    "eyebrow": "The platform for sports clubs",
     "title": "A website, an app and the admin work for your club",
     "body": "We build your club website, add your students and keep everything running. You run the classes.",
     "ctaOrder": "Order for 99 € a month",
     "ctaExample": "See an example club",
-    "note": "No contract. Cancel whenever you want."
+    "note": "No contract. Cancel whenever you want.",
+    "titleBefore": "A website, an app and the admin work for your",
+    "titleAfter": "club",
+    "sports": [
+      "karate",
+      "judo",
+      "football",
+      "tennis",
+      "swim",
+      "dance",
+      "boxing",
+      "volleyball"
+    ]
   },
   "how": {
     "title": "How it works",
@@ -153,7 +165,7 @@
   },
   "examples": {
     "title": "See it live",
-    "body": "Kime is an example club built entirely on Tatami. Browse the site and log in as a student.",
+    "body": "Kime is an example karate club built entirely on Tatami. The same platform works for any sport: browse the site and log in as a student.",
     "kime": {
       "title": "Kime Karate Club",
       "desc": "Club website, schedule, belts, gallery and the student app.",
@@ -173,7 +185,7 @@
     "per": "per month",
     "features": [
       "A club website built for you",
-      "Student app: schedule, belt, fees, competitions",
+      "Student app: schedule, level, fees, competitions",
       "Coach panel: attendance and payments",
       "Announcements to everyone or one group",
       "We enter and maintain the data",
@@ -203,6 +215,10 @@
   "faq": {
     "title": "Questions",
     "items": [
+      {
+        "q": "Does it work for my sport?",
+        "a": "Yes. Karate, judo, football, dance, swimming and any club with groups, a schedule and monthly fees. We set up levels, groups and content for your sport."
+      },
       {
         "q": "Do I need to be technical?",
         "a": "No. We build and maintain everything. You tell us what needs to change."
@@ -312,5 +328,19 @@
   "legal": {
     "back": "Home",
     "updated": "Last updated: 10 October 2026"
-  }
+  },
+  "sportsBand": [
+    "Karate",
+    "Judo",
+    "Taekwondo",
+    "Boxing",
+    "Football",
+    "Basketball",
+    "Volleyball",
+    "Tennis",
+    "Swimming",
+    "Gymnastics",
+    "Dance",
+    "Fitness"
+  ]
 }
