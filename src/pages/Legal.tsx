@@ -3,7 +3,7 @@ import { Footer, Nav } from '../components/Brand'
 
 type Doc = { title: string; sections: { h: string; p: string[] }[] }
 
-const EMAIL = 'hristo@varbanov.eu'
+const EMAIL = 'deividantonov@gmail.com, hristo@varbanov.eu'
 
 const TERMS: Record<'bg' | 'en', Doc> = {
   bg: {

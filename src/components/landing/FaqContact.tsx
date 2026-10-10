@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CONTACT_EMAILS } from '../../lib/paddle'
 import { Reveal, SectionHeading } from '../showcase/Section'
 
 export function Faq() {
@@ -56,7 +57,6 @@ export function Faq() {
 
 export function Contact() {
   const { t } = useTranslation()
-  const email = t('contact.email')
 
   return (
     <section id="contact" className="relative scroll-mt-16 overflow-hidden px-5 py-24 sm:py-32">
@@ -69,15 +69,19 @@ export function Contact() {
         <Reveal delay={0.1}>
           <p className="mt-6 text-lg text-shiro/65">{t('contact.body')}</p>
         </Reveal>
-        <Reveal delay={0.2}>
-          <a
-            href={`mailto:${email}`}
-            className="group mt-10 inline-block font-display text-2xl tracking-wide text-shiro sm:text-4xl"
-          >
-            {email}
-            <span className="mt-2 block h-0.5 origin-left scale-x-0 bg-straw transition-transform duration-500 group-hover:scale-x-100" />
-          </a>
-        </Reveal>
+        <div className="mt-10 flex flex-col items-center gap-5">
+          {CONTACT_EMAILS.map((email, i) => (
+            <Reveal key={email} delay={0.2 + i * 0.1}>
+              <a
+                href={`mailto:${email}`}
+                className="group inline-block font-display text-xl tracking-wide text-shiro sm:text-3xl"
+              >
+                {email}
+                <span className="mt-2 block h-0.5 origin-left scale-x-0 bg-straw transition-transform duration-500 group-hover:scale-x-100" />
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )

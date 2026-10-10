@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { CONTACT_EMAILS } from '../lib/paddle'
 
 // The 畳 seal: a hanko square, same mark the Hub uses.
 export function Seal({ className = 'h-9 w-9 text-lg' }: { className?: string }) {
@@ -85,10 +86,14 @@ export function Footer() {
             © {new Date().getFullYear()} Tatami. {t('footer.rights')}
           </span>
         </div>
-        <div className="flex gap-5">
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
           <Link to="/privacy" className="hover:text-straw">{t('footer.privacy')}</Link>
           <Link to="/terms" className="hover:text-straw">{t('footer.terms')}</Link>
-          <a href={`mailto:${t('contact.email')}`} className="hover:text-straw">{t('contact.email')}</a>
+          {CONTACT_EMAILS.map((email) => (
+            <a key={email} href={`mailto:${email}`} className="hover:text-straw">
+              {email}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

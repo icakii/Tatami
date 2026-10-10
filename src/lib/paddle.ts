@@ -3,5 +3,8 @@
 export const PADDLE_MONTHLY_PRICE_ID = 'pri_01m4gns82gsevvr8dn491mq5xh'
 export const PADDLE_DOMAIN_PRICE_ID = 'pri_01m4kn78jwx9r5bet4ys86y2jv'
 
+// Contact addresses shown on the site, in display order.
+export const CONTACT_EMAILS = ['deividantonov@gmail.com', 'hristo@varbanov.eu']
+
 export const MONTHLY_EUR = 99
 export const DOMAIN_EUR = 10
