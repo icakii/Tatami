@@ -1,0 +1,316 @@
+{
+  "appShowcase": {
+    "title": "An app for every student",
+    "body": "Every student gets their own account, on their phone, installed like a real app, showing exactly what they need, no digging around.",
+    "points": {
+      "belt": "Current belt and progress toward the next",
+      "payments": "Payment status, paid, due soon, or overdue",
+      "calendar": "A class calendar with changes clearly marked",
+      "offline": "Still works with no connection, the last data stays on the phone"
+    },
+    "mock": {
+      "greeting": "Hi, Alex",
+      "nextClass": "Next class",
+      "className": "Advanced",
+      "classTime": "Thursday · 7:00 PM",
+      "inbox": "Inbox",
+      "msg1Title": "Thursday class moved to 19:30",
+      "msg1Body": "Hall B is booked, see you an hour later.",
+      "msg2Title": "Belt exam on 15 November",
+      "msg2Body": "Sign-up list is open with your coach."
+    }
+  },
+  "paymentShowcase": {
+    "title": "Pay your fee online",
+    "body": "Monthly fees are paid straight from the app or the website, in seconds, no cash in envelopes, no bank transfers to chase, no awkward reminders.",
+    "points": {
+      "instant": "Pay by card in a few taps, from your phone or computer",
+      "anywhere": "Works the same in the app and on the website",
+      "status": "Your status flips to paid the moment it goes through"
+    },
+    "mock": {
+      "label": "Monthly fee",
+      "period": "October · Advanced group",
+      "stamp": "Paid",
+      "cta": "Pay now",
+      "history": "History",
+      "sep": "September",
+      "aug": "August"
+    }
+  },
+  "competitionsShowcase": {
+    "title": "Competitions and medals",
+    "body": "Every competition the club enters shows up in the app, who's competing, how it went, and what they won.",
+    "points": {
+      "entries": "See upcoming competitions, marked right on your schedule",
+      "results": "Placements recorded as soon as the coach enters them",
+      "medals": "A running record of every medal, kept for the whole season"
+    },
+    "mock": {
+      "title": "My results",
+      "eventName": "Regional Championship",
+      "eventDate": "March 15",
+      "placement": "1st place, Kata, U16",
+      "eventName2": "Sofia Open",
+      "eventDate2": "January 20"
+    }
+  },
+  "managed": {
+    "title": "We run it all for you",
+    "body": "Coaches coach, the admin work stays with us.",
+    "points": {
+      "noAdmin": {
+        "title": "Zero admin work",
+        "desc": "Adding students, belt changes, payments, message us and it's done."
+      },
+      "humanSupport": {
+        "title": "Real people, not forms",
+        "desc": "A call or a message, no ticket systems, no waiting on a reply."
+      },
+      "growWithYou": {
+        "title": "Grows with your club",
+        "desc": "New groups, new features, we add them for you, no rebuild fees."
+      }
+    }
+  },
+  "tabs": {
+    "home": "Home",
+    "schedule": "Schedule",
+    "competitions": "Competitions",
+    "payments": "Payments",
+    "profile": "Profile"
+  },
+  "paymentStatus": {
+    "trial": "Trial",
+    "paid": "Paid",
+    "due": "Due",
+    "overdue": "Overdue",
+    "waived": "Waived",
+    "unknown": "No data"
+  },
+  "schedule": {
+    "weekdays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "weekdaysShort": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ]
+  },
+  "nav": {
+    "how": "How it works",
+    "app": "The app",
+    "pricing": "Pricing",
+    "examples": "Examples",
+    "contact": "Contact",
+    "login": "Log in",
+    "account": "Account",
+    "order": "Order"
+  },
+  "hero": {
+    "eyebrow": "The platform for karate clubs",
+    "title": "A website, an app and the admin work for your club",
+    "body": "We build your club website, add your students and keep everything running. You run the classes.",
+    "ctaOrder": "Order for 99 € a month",
+    "ctaExample": "See an example club",
+    "note": "No contract. Cancel whenever you want."
+  },
+  "how": {
+    "title": "How it works",
+    "steps": {
+      "order": {
+        "title": "You order",
+        "desc": "Fill in a short form about your club and pay the first month online."
+      },
+      "build": {
+        "title": "We build the site",
+        "desc": "We build the website with your colors, coaches, schedule and photos."
+      },
+      "members": {
+        "title": "We add your students",
+        "desc": "We enter students, groups and fees and create their app accounts."
+      },
+      "care": {
+        "title": "We keep it running",
+        "desc": "New student, schedule change, announcement: message us and we do it."
+      }
+    }
+  },
+  "band": {
+    "eyebrow": "What your students get",
+    "title": "An app in every student’s pocket"
+  },
+  "examples": {
+    "title": "See it live",
+    "body": "Kime is an example club built entirely on Tatami. Browse the site and log in as a student.",
+    "kime": {
+      "title": "Kime Karate Club",
+      "desc": "Club website, schedule, belts, gallery and the student app.",
+      "demo": "Student demo login",
+      "cta": "Open the example site"
+    },
+    "hub": {
+      "title": "Tatami Hub",
+      "desc": "Our panel for running every club: students, payments, attendance and competitions.",
+      "note": "Tatami team login only.",
+      "cta": "Open the Hub",
+      "yourClub": "Your club"
+    }
+  },
+  "pricing": {
+    "title": "One price, everything included",
+    "per": "per month",
+    "features": [
+      "A club website built for you",
+      "Student app: schedule, belt, fees, competitions",
+      "Coach panel: attendance and payments",
+      "Announcements to everyone or one group",
+      "We enter and maintain the data",
+      "Support from a real person"
+    ],
+    "domainTitle": "Website address",
+    "domains": {
+      "subdomain": {
+        "title": "Tatami subdomain",
+        "price": "Free",
+        "desc": "Your site lives on an address we provide."
+      },
+      "own": {
+        "title": "Your own domain",
+        "price": "Free",
+        "desc": "Already have a domain? We connect it at no extra cost."
+      },
+      "new": {
+        "title": "New domain",
+        "price": "+10 € a month",
+        "desc": "We register, renew and manage a new domain for you."
+      }
+    },
+    "terms": "You pay the first month when you order; after that the subscription renews automatically every month. Cancel any time from your account and the service stays active until the end of the paid period. Payments are non-refundable.",
+    "cta": "Order now"
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "Do I need to be technical?",
+        "a": "No. We build and maintain everything. You tell us what needs to change."
+      },
+      {
+        "q": "What happens if I cancel?",
+        "a": "The subscription stops renewing. The site and app keep working until the end of the month you already paid for."
+      },
+      {
+        "q": "Can I change the colors and photos?",
+        "a": "Yes. Send us new photos or text and we put them up."
+      },
+      {
+        "q": "How do students pay their fees?",
+        "a": "The coach records payments in their panel, and students see how far they are paid up in the app."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "body": "Questions before you order? Write to us.",
+    "email": "hristo@varbanov.eu"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "auth": {
+    "loginTitle": "Log in",
+    "registerTitle": "Sign up",
+    "name": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters.",
+    "login": "Log in",
+    "register": "Create account",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "forgot": "Forgot your password?",
+    "sendReset": "Send link",
+    "resetSent": "If an account exists for that email, we sent a reset link.",
+    "newPassword": "New password",
+    "savePassword": "Save password",
+    "passwordSaved": "Your password was changed.",
+    "checkEmail": "We sent you a confirmation email. Open the link in it, then log in.",
+    "back": "Back",
+    "acceptTerms": "I accept the terms and the privacy policy",
+    "errors": {
+      "short": "The password must be at least 8 characters.",
+      "terms": "You need to accept the terms.",
+      "generic": "Something went wrong. Try again."
+    }
+  },
+  "order": {
+    "title": "Order",
+    "subtitle": "Tell us about your club. After you pay, we will contact you within one business day.",
+    "contactName": "Your name",
+    "phone": "Phone",
+    "clubName": "Club name",
+    "city": "City",
+    "students": "Roughly how many students",
+    "domain": "Domain",
+    "domainPlaceholder": "e.g. myclub.com",
+    "notes": "Anything we should know? (optional)",
+    "summary": "Monthly total",
+    "firstMonth": "Today you pay the first month",
+    "acceptTerms": "I understand the subscription renews monthly, I can cancel any time, and payments are non-refundable.",
+    "submit": "Continue to payment",
+    "processing": "Opening checkout...",
+    "errors": {
+      "terms": "You need to accept the terms.",
+      "payments": "Payments are not configured.",
+      "generic": "The order could not be created. Try again."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "orders": "Orders",
+    "none": "No orders yet.",
+    "newOrder": "New order",
+    "logout": "Log out",
+    "paidUntil": "Paid until",
+    "cancelAt": "Cancelled, active until",
+    "pay": "Pay",
+    "cancel": "Cancel subscription",
+    "cancelTitle": "Cancel subscription",
+    "cancelBody": "The subscription will not renew. Your site stays active until the end of the paid period. Payments are non-refundable.",
+    "cancelConfirm": "Yes, cancel",
+    "keep": "Keep it",
+    "paidNote": "Payment received. We will be in touch soon.",
+    "status": {
+      "pending_payment": "Awaiting payment",
+      "paid": "Paid",
+      "in_progress": "In progress",
+      "live": "Live",
+      "cancelled": "Cancelled"
+    },
+    "domainOption": {
+      "subdomain": "Tatami subdomain",
+      "own": "Own domain",
+      "new": "New domain"
+    },
+    "cancelPending": "Cancel order",
+    "cancelPendingBody": "The order will be cancelled. Nothing has been paid, so nothing is charged."
+  },
+  "legal": {
+    "back": "Home",
+    "updated": "Last updated: 10 October 2026"
+  }
+}

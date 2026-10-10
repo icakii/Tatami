@@ -1,0 +1,461 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Modern dojo: washi-paper base and sumi ink, with a full set of
+     traditional Japanese dye colors as accents instead of one lone red --
+     shu (vermilion), kin (gold), ai (indigo), and matcha/jade. */
+  --color-kuro: #f3ecdd;
+  --color-ink: #1f1b16;
+  --color-shiro: #fbf6ea;
+  --color-aka: #c2361f;
+  --color-aka-text: #a82c18;
+  --color-gold: #7a5c2e;
+  --color-kin: #c9973f;
+  --color-ai: #1f3352;
+  --color-ai-soft: #2f4f7a;
+  --color-jade: #2f6b4f;
+  --color-sakura: #e9a8a0;
+  --color-muted: #5e5648;
+  --color-muted-2: #6a6150;
+  --color-surface: #ece1c8;
+  --color-line: #d4c49c;
+
+  /* Tatami site: night ink base with straw (igusa) gold, paper bands for
+     the app showcases. */
+  --color-night: #12110f;
+  --color-night-2: #1b1915;
+  --color-straw: #d9b66b;
+  --color-igusa: #8e9a5b;
+
+  --color-belt-white: #f6f3ec;
+  --color-belt-yellow: #f2c230;
+  --color-belt-orange: #f08a24;
+  --color-belt-green: #2e9e5b;
+  --color-belt-blue: #2c6db5;
+  --color-belt-brown: #7a4a2b;
+  --color-belt-black: #0b0b0d;
+
+  --font-display: 'Oswald', system-ui, sans-serif;
+  --font-sans: 'Onest', system-ui, sans-serif;
+  --font-brush: 'Yuji Syuku', 'Noto Serif JP', serif;
+}
+
+body {
+  margin: 0;
+  background: var(--color-night);
+  color: var(--color-shiro);
+  font-family: var(--font-sans);
+  color-scheme: dark;
+}
+
+/* clip, not hidden: mobile Safari ignores overflow-x:hidden on body, and
+   hidden would also break the sticky nav (it makes a scroll container). */
+html,
+body {
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---------- Shared entrance animations ---------- */
+
+@keyframes enso-draw {
+  from {
+    stroke-dashoffset: var(--dash, 220);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Wordmark letters rise out of an overflow-hidden slot. */
+@keyframes letter-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.letter-rise {
+  display: inline-block;
+  animation: letter-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hanko seal thumping onto the paper. */
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-22deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.92) rotate(-6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+
+.stamp-in {
+  animation: stamp-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 1s ease-out both;
+}
+
+/* Slow breathing on the hero's sun glow. */
+@keyframes sun-breathe {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+.sun-breathe {
+  animation: sun-breathe 9s ease-in-out infinite;
+}
+
+/* Scroll cue: a short ink line sliding down a track. */
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.scroll-cue {
+  animation: scroll-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Gentle float for the phone mockups. */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@keyframes pin-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pin-badge {
+  animation: pin-drop 0.7s ease-out both;
+}
+
+/* ---------- Sitewide kanji field ---------- */
+
+/* KanjiBackdrop: a faint base tile plus three sparse "glow" tiles of the
+   same cells, each fading in and out on its own offset cycle -- so scattered
+   characters shimmer, while the browser only animates opacity on three
+   composited layers instead of thousands of individual glyphs. The "central
+   ones a bit clearer" effect is .kana-vignette, pinned to the viewport. */
+@keyframes kanji-glow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.kanji-glow {
+  opacity: 0;
+  will-change: opacity;
+}
+.kanji-glow-1 {
+  animation: kanji-glow 7s ease-in-out infinite;
+}
+.kanji-glow-2 {
+  animation: kanji-glow 9s ease-in-out infinite 2.4s;
+}
+.kanji-glow-3 {
+  animation: kanji-glow 11s ease-in-out infinite 5s;
+}
+
+.kana-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(243, 236, 221, 0.75) 0%,
+    rgba(243, 236, 221, 0.35) 22%,
+    rgba(243, 236, 221, 0) 42%,
+    rgba(243, 236, 221, 0) 58%,
+    rgba(243, 236, 221, 0.35) 78%,
+    rgba(243, 236, 221, 0.75) 100%
+  );
+}
+
+/* ---------- Feature card sheen ---------- */
+
+@keyframes card-shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-20deg);
+  }
+}
+
+.shimmer-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 35%;
+  background: linear-gradient(120deg, transparent, rgba(255, 250, 230, 0.6), transparent);
+  animation: card-shimmer 4.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+  pointer-events: none;
+}
+
+/* ---------- Online payment demo (PaymentShowcase) ---------- */
+
+/* One shared 6s cycle so every piece stays in sync while looping: card
+   slides in, progress fills, check draws, seal stamps, everything resets. */
+@keyframes pay-card {
+  0% {
+    opacity: 0;
+    transform: translateY(150%) rotate(-10deg);
+  }
+  14%,
+  38% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+  48%,
+  100% {
+    opacity: 0;
+    transform: translateY(-20%) scale(0.85);
+  }
+}
+@keyframes pay-progress {
+  0%,
+  16% {
+    transform: scaleX(0);
+  }
+  42%,
+  92% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+@keyframes pay-check {
+  0%,
+  46% {
+    stroke-dashoffset: 60;
+    opacity: 0;
+  }
+  47% {
+    opacity: 1;
+  }
+  60%,
+  92% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+@keyframes pay-ring {
+  0%,
+  46% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  56%,
+  92% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes pay-stamp {
+  0%,
+  62% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-22deg);
+  }
+  68% {
+    opacity: 1;
+    transform: scale(0.95) rotate(-8deg);
+  }
+  70%,
+  92% {
+    opacity: 1;
+    transform: scale(1) rotate(-10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) rotate(-10deg);
+  }
+}
+
+.pay-playing .pay-card {
+  animation: pay-card 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.pay-playing .pay-progress {
+  transform-origin: left;
+  animation: pay-progress 6s ease-in-out infinite;
+}
+.pay-playing .pay-check {
+  stroke-dasharray: 60;
+  animation: pay-check 6s ease-out infinite;
+}
+.pay-playing .pay-ring {
+  animation: pay-ring 6s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.pay-playing .pay-stamp {
+  animation: pay-stamp 6s ease-out infinite;
+}
+
+/* ---------- Belt ladder ---------- */
+
+.belt-chip {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-out;
+}
+
+.belt-chip.is-visible {
+  transform: scaleX(1);
+}
+
+/* ---------- Reduced motion: everything settles to its end state ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .letter-rise,
+  .stamp-in,
+  .fade-in,
+  .sun-breathe,
+  .float-y,
+  .pin-badge,
+  .kanji-glow,
+  .shimmer-card::after {
+    animation: none !important;
+  }
+
+  .scroll-cue {
+    display: none;
+  }
+
+  .belt-chip {
+    transform: none;
+    transition: none;
+  }
+
+  .pay-playing .pay-card,
+  .pay-playing .pay-progress,
+  .pay-playing .pay-check,
+  .pay-playing .pay-ring,
+  .pay-playing .pay-stamp {
+    animation: none !important;
+  }
+  .pay-ring,
+  .pay-check,
+  .pay-stamp {
+    opacity: 1;
+  }
+  .pay-card {
+    opacity: 0;
+  }
+}
+
+/* ---------- Tatami site ---------- */
+
+/* Woven igusa texture: fine straw lines plus the darker binding edge every
+   few hundred px, drawn entirely with gradients (no image request). */
+.tatami-weave {
+  background-color: var(--color-night);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(217, 182, 107, 0.035) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, transparent 0 239px, rgba(217, 182, 107, 0.07) 239px 241px, transparent 241px 480px),
+    repeating-linear-gradient(0deg, transparent 0 359px, rgba(217, 182, 107, 0.05) 359px 361px);
+}
+
+/* A slow band of light drifting across the mats in the hero. */
+@keyframes mat-sheen {
+  0% {
+    transform: translateX(-60%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(160%) skewX(-12deg);
+  }
+}
+
+.mat-sheen {
+  animation: mat-sheen 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mat-sheen {
+    animation: none;
+    opacity: 0;
+  }
+}
