@@ -275,7 +275,7 @@
   },
   "order": {
     "title": "Order",
-    "subtitle": "Tell us about your club. After you pay, we will contact you within one business day.",
+    "subtitle": "Tell us about your club. Send an inquiry first and pay once we agree, or pay the first month right away.",
     "contactName": "Your name",
     "phone": "Phone",
     "clubName": "Club name",
@@ -283,17 +283,22 @@
     "students": "Roughly how many students",
     "domain": "Domain",
     "domainPlaceholder": "e.g. myclub.com",
-    "notes": "Anything we should know? (optional)",
+    "notes": "What should the website and app have?",
     "summary": "Monthly total",
     "firstMonth": "Today you pay the first month",
-    "acceptTerms": "I understand the subscription renews monthly, I can cancel any time, and payments are non-refundable.",
-    "submit": "Continue to payment",
+    "acceptTerms": "If paying now: I understand the subscription renews monthly, I can cancel any time, and payments are non-refundable.",
+    "submit": "Pay the first month now",
     "processing": "Opening checkout...",
     "errors": {
       "terms": "You need to accept the terms.",
       "payments": "Payments are not configured.",
-      "generic": "The order could not be created. Try again."
-    }
+      "generic": "The order could not be created. Try again.",
+      "notes": "Briefly describe what you want (a few words at least)."
+    },
+    "notesPlaceholder": "For example: a site with the schedule and coaches, an app for about 60 students, online trial sign-ups, our logo and colors...",
+    "extrasNote": "99 € a month covers the standard package. If you want something on top (a store, online fee payments, custom design, several clubs), we will talk it through and agree on the price separately.",
+    "sendInquiry": "Send an inquiry",
+    "inquiryHint": "An inquiry is free and commits you to nothing. We will reply within 1 business day, and once we agree you can pay from your account."
   },
   "account": {
     "title": "My account",
@@ -315,7 +320,8 @@
       "paid": "Paid",
       "in_progress": "In progress",
       "live": "Live",
-      "cancelled": "Cancelled"
+      "cancelled": "Cancelled",
+      "inquiry": "Inquiry"
     },
     "domainOption": {
       "subdomain": "Tatami subdomain",
@@ -323,7 +329,9 @@
       "new": "New domain"
     },
     "cancelPending": "Cancel order",
-    "cancelPendingBody": "The order will be cancelled. Nothing has been paid, so nothing is charged."
+    "cancelPendingBody": "The order will be cancelled. Nothing has been paid, so nothing is charged.",
+    "inquiryNote": "Inquiry sent. We will reply within 1 business day, and once we agree a payment button will appear here.",
+    "cancelInquiry": "Withdraw inquiry"
   },
   "legal": {
     "back": "Home",

@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth'
 import { useCancelOrder, useOrders, usePaddle, type Order } from '../hooks/useOrders'
 
 const STATUS_STYLE: Record<Order['status'], string> = {
+  inquiry: 'bg-ai-soft/20 text-[#a9c1e6] ring-ai-soft/50',
   pending_payment: 'bg-kin/15 text-straw ring-kin/40',
   paid: 'bg-jade/20 text-[#8fd1ac] ring-jade/50',
   in_progress: 'bg-ai-soft/25 text-[#a9c1e6] ring-ai-soft/60',
@@ -22,6 +23,7 @@ export function Account() {
   const queryClient = useQueryClient()
   const [params] = useSearchParams()
   const justPaid = params.get('paid') === '1'
+  const justAsked = params.get('inquiry') === '1'
   const { data: orders, isLoading } = useOrders(session?.user.id)
   const cancelOrder = useCancelOrder()
   const [confirming, setConfirming] = useState<Order | null>(null)
@@ -69,6 +71,15 @@ export function Account() {
         </div>
 
         <AnimatePresence>
+          {justAsked && (
+            <motion.p
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 rounded-2xl border border-ai-soft/60 bg-ai/30 px-5 py-4 text-sm text-[#c2d4ee]"
+            >
+              {t('account.inquiryNote')}
+            </motion.p>
+          )}
           {justPaid && (
             <motion.p
               initial={{ opacity: 0, y: -8 }}
@@ -141,7 +152,11 @@ export function Account() {
                       onClick={() => setConfirming(order)}
                       className="rounded-full border border-shiro/15 px-5 py-2 font-display text-xs uppercase tracking-wider text-shiro/60 hover:border-aka hover:text-sakura"
                     >
-                      {order.status === 'pending_payment' ? t('account.cancelPending') : t('account.cancel')}
+                      {order.status === 'inquiry'
+                        ? t('account.cancelInquiry')
+                        : order.status === 'pending_payment'
+                          ? t('account.cancelPending')
+                          : t('account.cancel')}
                     </button>
                   )}
                 </div>
@@ -172,7 +187,9 @@ export function Account() {
             >
               <h3 className="font-display text-xl font-semibold uppercase tracking-wide text-shiro">{t('account.cancelTitle')}</h3>
               <p className="mt-3 text-sm leading-relaxed text-shiro/65">
-                {confirming.status === 'pending_payment' ? t('account.cancelPendingBody') : t('account.cancelBody')}
+                {confirming.status === 'pending_payment' || confirming.status === 'inquiry'
+                  ? t('account.cancelPendingBody')
+                  : t('account.cancelBody')}
               </p>
               {cancelOrder.isError && <p className="mt-3 text-sm text-sakura">{t('auth.errors.generic')}</p>}
               <div className="mt-6 grid grid-cols-2 gap-3">

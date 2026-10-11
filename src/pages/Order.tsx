@@ -33,10 +33,14 @@ export function Order() {
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [key]: e.target.value }))
 
+  const [mode, setMode] = useState<'inquiry' | 'pay'>('inquiry')
+
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    if (!accepted) return setError(t('order.errors.terms'))
-    if (!ready) return setError(t('order.errors.payments'))
+    const paying = mode === 'pay'
+    if (form.notes.trim().length < 10) return setError(t('order.errors.notes'))
+    if (paying && !accepted) return setError(t('order.errors.terms'))
+    if (paying && !ready) return setError(t('order.errors.payments'))
     setError(null)
     const email = session?.user.email ?? ''
     try {
@@ -50,8 +54,10 @@ export function Order() {
         domain_option: domainOption,
         domain: domainOption === 'subdomain' ? null : form.domain.trim().toLowerCase() || null,
         notes: form.notes.trim() || null,
+        status: paying ? 'pending_payment' : 'inquiry',
       })
-      openCheckout({ id, email, domain_option: domainOption })
+      if (paying) openCheckout({ id, email, domain_option: domainOption })
+      else navigate('/account?inquiry=1')
     } catch (err) {
       setError(err instanceof Error && err.message.includes('Too many') ? err.message : t('order.errors.generic'))
     }
@@ -84,6 +90,23 @@ export function Order() {
           </label>
         </div>
 
+        <label className="block">
+          <span className={labelClass}>{t('order.notes')}</span>
+          <textarea
+            rows={5}
+            required
+            minLength={10}
+            maxLength={2000}
+            placeholder={t('order.notesPlaceholder')}
+            value={form.notes}
+            onChange={set('notes')}
+            className={`${inputClass} py-3`}
+          />
+          <span className="mt-2 block rounded-xl border border-straw/20 bg-straw/5 px-4 py-3 text-xs leading-relaxed text-shiro/60">
+            {t('order.extrasNote')}
+          </span>
+        </label>
+
         <fieldset>
           <legend className={labelClass}>{t('pricing.domainTitle')}</legend>
           <div className="mt-2 grid gap-3 sm:grid-cols-3">
@@ -95,7 +118,7 @@ export function Order() {
                   type="button"
                   onClick={() => setDomainOption(d)}
                   aria-pressed={active}
-                  className={`relative rounded-2xl border p-4 text-left transition-colors ${
+                  className={`relative rounded-2xl border p-4 pr-9 text-left transition-colors ${
                     active ? 'border-straw bg-straw/10' : 'border-shiro/10 hover:border-shiro/30'
                   }`}
                 >
@@ -131,17 +154,6 @@ export function Order() {
           </label>
         )}
 
-        <label className="block">
-          <span className={labelClass}>{t('order.notes')}</span>
-          <textarea
-            rows={3}
-            maxLength={2000}
-            value={form.notes}
-            onChange={set('notes')}
-            className={`${inputClass} py-3`}
-          />
-        </label>
-
         <div className="flex items-center justify-between rounded-2xl border border-straw/25 bg-night px-5 py-4">
           <div>
             <p className="text-xs uppercase tracking-[0.15em] text-shiro/50">{t('order.summary')}</p>
@@ -163,9 +175,25 @@ export function Order() {
         </label>
 
         <FormError message={error} />
-        <button type="submit" disabled={createOrder.isPending} className={primaryButton}>
-          {createOrder.isPending ? t('order.processing') : t('order.submit')}
-        </button>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <button
+            type="submit"
+            onClick={() => setMode('inquiry')}
+            disabled={createOrder.isPending}
+            className={primaryButton}
+          >
+            {createOrder.isPending && mode === 'inquiry' ? '...' : t('order.sendInquiry')}
+          </button>
+          <button
+            type="submit"
+            onClick={() => setMode('pay')}
+            disabled={createOrder.isPending}
+            className="min-h-12 w-full rounded-full border border-straw/50 px-6 font-display text-sm uppercase tracking-wider text-straw transition-colors hover:bg-straw hover:text-night disabled:opacity-60"
+          >
+            {createOrder.isPending && mode === 'pay' ? t('order.processing') : t('order.submit')}
+          </button>
+        </div>
+        <p className="text-center text-xs text-shiro/40">{t('order.inquiryHint')}</p>
       </form>
     </AuthShell>
   )

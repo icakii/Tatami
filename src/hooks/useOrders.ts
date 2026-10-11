@@ -13,7 +13,7 @@ export interface Order {
   email: string
   domain_option: DomainOption
   domain: string | null
-  status: 'pending_payment' | 'paid' | 'in_progress' | 'live' | 'cancelled'
+  status: 'inquiry' | 'pending_payment' | 'paid' | 'in_progress' | 'live' | 'cancelled'
   paid_until: string | null
   cancel_at: string | null
   created_at: string
@@ -44,6 +44,7 @@ export interface NewOrder {
   domain_option: DomainOption
   domain: string | null
   notes: string | null
+  status: 'inquiry' | 'pending_payment'
 }
 
 export function useCreateOrder() {
