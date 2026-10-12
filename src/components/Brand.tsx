@@ -5,15 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { CONTACT_EMAILS } from '../lib/paddle'
 
-// The 畳 seal: a hanko square, same mark the Hub uses.
-export function Seal({ className = 'h-9 w-9 text-lg' }: { className?: string }) {
+// The Tatami mark: four mats in a pinwheel around a half mat, on a hanko-red
+// tile. Same geometry as the favicon and the hero illustration.
+export function Seal({ className = 'h-9 w-9' }: { className?: string }) {
   return (
-    <span
-      className={`flex shrink-0 items-center justify-center rounded-md bg-aka font-brush leading-none text-shiro shadow-[0_6px_18px_-6px_rgba(194,54,31,0.9)] ${className}`}
-      aria-hidden="true"
-    >
-      畳
-    </span>
+    <svg viewBox="0 0 64 64" className={`shrink-0 drop-shadow-[0_6px_14px_rgba(194,54,31,0.55)] ${className}`} aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#c2361f" />
+      <rect x="13.00" y="13.00" width="24.67" height="11.33" rx="1.6" fill="#fbf6ea" /><rect x="39.67" y="13.00" width="11.33" height="24.67" rx="1.6" fill="#fbf6ea" /><rect x="26.33" y="39.67" width="24.67" height="11.33" rx="1.6" fill="#fbf6ea" /><rect x="13.00" y="26.33" width="11.33" height="24.67" rx="1.6" fill="#fbf6ea" /><rect x="26.33" y="26.33" width="11.33" height="11.33" rx="1.6" fill="#d9b66b" />
+    </svg>
   )
 }
 

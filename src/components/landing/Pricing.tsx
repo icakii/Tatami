@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { PLANS, type Plan } from '../../lib/paddle'
 import { Reveal, SectionHeading } from '../showcase/Section'
 
-const ADD_ONS = ['domain', 'extra', 'language', 'logo', 'social'] as const
+const ADD_ONS = ['domain'] as const
 
 function CountUp({ to }: { to: number }) {
   const ref = useRef<HTMLSpanElement>(null)

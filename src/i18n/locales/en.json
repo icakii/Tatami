@@ -175,8 +175,8 @@
     "hub": {
       "title": "Tatami Hub",
       "desc": "Our panel for running every club: students, payments, attendance and competitions.",
-      "note": "Tatami team login only.",
-      "cta": "Open the Hub",
+      "note": "Not public yet. Tatami team login only.",
+      "cta": "Coming soon",
       "yourClub": "Your club"
     }
   },
@@ -184,7 +184,7 @@
     "title": "Pricing",
     "body": "Pay for the build once, then a monthly fee. No contract, cancel whenever you want.",
     "quotedTitle": "By quote",
-    "addOnsTitle": "Extras",
+    "addOnsTitle": "Domain",
     "addOns": {
       "domain": {
         "name": "Domain: our subdomain or your own",
@@ -316,7 +316,7 @@
       "notes": "Briefly describe what you want (a few words at least)."
     },
     "notesPlaceholder": "For example: a site with the schedule and coaches, an app for about 60 students, online trial sign-ups, our logo and colors...",
-    "extrasNote": "The plan price covers what is listed in it. If you want something on top (a store, online fee payments, custom design, more locations), we will talk it through and agree on the price separately.",
+    "extrasNote": "The plan price covers what is listed in it. If you want something on top, we will talk it through and agree on the price separately.",
     "sendInquiry": "Send an inquiry",
     "inquiryHint": "An inquiry is free and commits you to nothing. We will reply within 1 business day, and once we agree you can pay from your account.",
     "plan": "Plan",
@@ -408,22 +408,22 @@
     },
     "club": {
       "name": "Club",
-      "tagline": "Website and app for a sports club.",
+      "tagline": "Website, app and a panel you run the club with yourself.",
       "features": [
-        "Everything in Website",
+        "Club website: schedule, coaches, news, gallery",
         "Student app: schedule, level, fees, competitions",
-        "Attendance and payments by the coach",
-        "Groups, halls and announcements",
-        "We enter and maintain the data"
+        "Admin panel: add students, change belts and create classes yourself",
+        "Attendance and fee payments",
+        "Up to 75 students"
       ]
     },
     "club_pro": {
       "name": "Club Pro",
-      "tagline": "A club with a store and a full admin panel.",
+      "tagline": "We run everything for you.",
       "features": [
-        "Everything in Club",
-        "Store for gear and clothing",
-        "Orders panel",
+        "Everything in Club, no student limit",
+        "We enter students, change belts and create classes for you",
+        "A small store for club gear",
         "Club statistics",
         "Priority support"
       ]

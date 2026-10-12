@@ -5,7 +5,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { Reveal, SectionHeading } from '../showcase/Section'
 
 const EXAMPLE_SITE = (import.meta.env.VITE_EXAMPLE_SITE_URL as string | undefined) ?? 'https://kimeclub.onrender.com'
-const HUB = (import.meta.env.VITE_HUB_URL as string | undefined) ?? 'https://tatamihub.onrender.com'
+const HUB = 'hub.tatamistudio.net'
 
 // Card that tilts toward the pointer, like lifting a print off the table.
 function TiltCard({ children, className }: { children: ReactNode; className: string }) {
@@ -151,14 +151,10 @@ export function Examples() {
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-shiro/60">{t('examples.hub.desc')}</p>
                 <p className="mt-4 text-xs uppercase tracking-wide text-shiro/40">{t('examples.hub.note')}</p>
-                <a
-                  href={HUB}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex rounded-full border border-straw/50 px-6 py-3 font-display text-xs uppercase tracking-wider text-straw transition-colors hover:bg-straw hover:text-night"
-                >
-                  {t('examples.hub.cta')} ↗
-                </a>
+                <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-shiro/15 px-6 py-3 font-display text-xs uppercase tracking-wider text-shiro/50">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-straw" />
+                  {t('examples.hub.cta')}
+                </span>
               </div>
             </TiltCard>
           </Reveal>
