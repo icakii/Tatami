@@ -21,7 +21,10 @@ export function Wordmark() {
   return (
     <Link to="/" className="flex items-center gap-2.5">
       <Seal />
-      <span className="font-display text-lg font-semibold uppercase tracking-[0.35em] text-shiro">Tatami</span>
+      <span className="flex items-baseline gap-2">
+        <span className="font-display text-lg font-semibold uppercase tracking-[0.35em] text-shiro">Tatami</span>
+        <span className="font-display text-[10px] uppercase tracking-[0.3em] text-straw">Studio</span>
+      </span>
     </Link>
   )
 }
@@ -74,6 +77,7 @@ export function Nav() {
     ['/#how', t('nav.how')],
     ['/#app', t('nav.app')],
     ['/#examples', t('nav.examples')],
+    ['/#services', t('nav.services')],
     ['/#pricing', t('nav.pricing')],
     ['/#contact', t('nav.contact')],
   ] as const
@@ -164,7 +168,7 @@ export function Footer() {
         <div className="flex items-center gap-2.5">
           <Seal className="h-7 w-7 text-sm" />
           <span>
-            © {new Date().getFullYear()} Tatami. {t('footer.rights')}
+            © {new Date().getFullYear()} Tatami Studio. {t('footer.rights')}
           </span>
         </div>
         <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">

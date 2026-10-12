@@ -9,11 +9,11 @@ const TERMS: Record<'bg' | 'en', Doc> = {
   bg: {
     title: 'Общи условия',
     sections: [
-      { h: '1. Услугата', p: ['Tatami изработва и поддържа уебсайт и приложение за спортен клуб и въвежда и поддържа данните на клуба (ученици, групи, график, такси) по искане на клуба.'] },
+      { h: '1. Услугата', p: ['Tatami Studio изработва и поддържа уебсайтове, приложения, онлайн магазини и системи по поръчка, а за спортните клубове въвежда и поддържа и данните им (ученици, групи, график, такси).'] },
       {
         h: '2. Абонамент и плащане',
         p: [
-          'Цената е 99 € на месец, плюс 10 € на месец, ако сте избрали нов домейн, управляван от нас. Първият месец се плаща при поръчката.',
+          'Цената зависи от избрания план (изработка плюс месечна такса) или от индивидуалната оферта, която сте приели, плюс 10 € на месец за нов домейн, управляван от нас. Изработката и първият месец се плащат при поръчката. Всички цени са с включен ДДС.',
           'Абонаментът се подновява автоматично всеки месец, докато не бъде прекратен.',
           'Плащанията се обработват от Paddle.com, който е търговецът (Merchant of Record) за всички поръчки. Paddle издава фактурите и обработва данните за картата; ние не ги виждаме и не ги съхраняваме.',
         ],
@@ -36,11 +36,11 @@ const TERMS: Record<'bg' | 'en', Doc> = {
   en: {
     title: 'Terms of Service',
     sections: [
-      { h: '1. The service', p: ['Tatami builds and maintains a website and app for a sports club, and enters and maintains the club’s data (students, groups, schedule, fees) at the club’s request.'] },
+      { h: '1. The service', p: ['Tatami Studio builds and maintains websites, apps, online stores and custom systems, and for sports clubs also enters and maintains their data (students, groups, schedule, fees).'] },
       {
         h: '2. Subscription and payment',
         p: [
-          'The price is 99 € per month, plus 10 € per month if you chose a new domain managed by us. The first month is paid when you order.',
+          'The price depends on the chosen plan (a build fee plus a monthly fee) or on the individual quote you accepted, plus 10 € per month for a new domain managed by us. The build and the first month are paid when you order. All prices include VAT.',
           'The subscription renews automatically every month until cancelled.',
           'Payments are processed by Paddle.com, the Merchant of Record for all orders. Paddle issues the invoices and handles card details; we never see or store them.',
         ],

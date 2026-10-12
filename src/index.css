@@ -478,3 +478,13 @@ body {
     animation: none;
   }
 }
+
+.sports-marquee-reverse {
+  animation: sports-marquee 48s linear infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sports-marquee-reverse {
+    animation: none;
+  }
+}

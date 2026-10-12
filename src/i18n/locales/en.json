@@ -116,26 +116,26 @@
     "contact": "Contact",
     "login": "Log in",
     "account": "Account",
-    "order": "Order"
+    "order": "Order",
+    "services": "Services"
   },
   "hero": {
-    "eyebrow": "The platform for sports clubs",
+    "eyebrow": "Born on the tatami. For every club and business.",
     "title": "A website, an app and the admin work for your club",
-    "body": "We build your club website, add your students and keep everything running. You run the classes.",
-    "ctaOrder": "Order for 99 € a month",
+    "body": "We build the website and app, enter your data and keep everything running. You run your club or business.",
+    "ctaOrder": "See the plans",
     "ctaExample": "See an example club",
     "note": "No contract. Cancel whenever you want.",
     "titleBefore": "A website, an app and the admin work for your",
-    "titleAfter": "club",
     "sports": [
-      "karate",
-      "judo",
-      "football",
-      "tennis",
-      "swim",
-      "dance",
-      "boxing",
-      "volleyball"
+      "karate club",
+      "judo club",
+      "football club",
+      "dance club",
+      "gym",
+      "salon",
+      "restaurant",
+      "business"
     ]
   },
   "how": {
@@ -181,16 +181,34 @@
     }
   },
   "pricing": {
-    "title": "One price, everything included",
-    "per": "per month",
-    "features": [
-      "A club website built for you",
-      "Student app: schedule, level, fees, competitions",
-      "Coach panel: attendance and payments",
-      "Announcements to everyone or one group",
-      "We enter and maintain the data",
-      "Support from a real person"
-    ],
+    "title": "Pricing",
+    "body": "Pay for the build once, then a monthly fee. No contract, cancel whenever you want.",
+    "quotedTitle": "By quote",
+    "addOnsTitle": "Extras",
+    "addOns": {
+      "domain": {
+        "name": "Domain: our subdomain or your own",
+        "price": "free · new +10 €/month"
+      },
+      "extra": {
+        "name": "Work outside the plan",
+        "price": "30 €/hour"
+      },
+      "language": {
+        "name": "Second language",
+        "price": "100 € once"
+      },
+      "logo": {
+        "name": "Logo and visual identity",
+        "price": "from 150 €"
+      },
+      "social": {
+        "name": "Social media posts",
+        "price": "from 150 €/month"
+      }
+    },
+    "vatNote": "All prices include VAT.",
+    "terms": "The build and the first month are paid when you order; after that the subscription renews every month. Cancel any time from your account and the service stays active until the end of the paid period. Payments are non-refundable.",
     "domainTitle": "Website address",
     "domains": {
       "subdomain": {
@@ -208,9 +226,7 @@
         "price": "+10 € a month",
         "desc": "We register, renew and manage a new domain for you."
       }
-    },
-    "terms": "You pay the first month when you order; after that the subscription renews automatically every month. Cancel any time from your account and the service stays active until the end of the paid period. Payments are non-refundable.",
-    "cta": "Order now"
+    }
   },
   "faq": {
     "title": "Questions",
@@ -218,6 +234,10 @@
       {
         "q": "Does it work for my sport?",
         "a": "Yes. Karate, judo, football, dance, swimming and any club with groups, a schedule and monthly fees. We set up levels, groups and content for your sport."
+      },
+      {
+        "q": "Do you build sites outside sports?",
+        "a": "Yes. We started with sports clubs, but we build websites, stores and systems for any business. See the Website, Online store and Custom system plans."
       },
       {
         "q": "Do I need to be technical?",
@@ -275,19 +295,19 @@
   },
   "order": {
     "title": "Order",
-    "subtitle": "Tell us about your club. Send an inquiry first and pay once we agree, or pay the first month right away.",
+    "subtitle": "Tell us what you need. Send an inquiry first and pay once we agree, or pay right away.",
     "contactName": "Your name",
     "phone": "Phone",
-    "clubName": "Club name",
+    "clubName": "Club or business name",
     "city": "City",
-    "students": "Roughly how many students",
+    "students": "Students or customers (roughly)",
     "domain": "Domain",
     "domainPlaceholder": "e.g. myclub.com",
-    "notes": "What should the website and app have?",
-    "summary": "Monthly total",
+    "notes": "What should the website or system have?",
+    "summary": "You pay today",
     "firstMonth": "Today you pay the first month",
     "acceptTerms": "If paying now: I understand the subscription renews monthly, I can cancel any time, and payments are non-refundable.",
-    "submit": "Pay the first month now",
+    "submit": "Pay now",
     "processing": "Opening checkout...",
     "errors": {
       "terms": "You need to accept the terms.",
@@ -296,9 +316,13 @@
       "notes": "Briefly describe what you want (a few words at least)."
     },
     "notesPlaceholder": "For example: a site with the schedule and coaches, an app for about 60 students, online trial sign-ups, our logo and colors...",
-    "extrasNote": "99 € a month covers the standard package. If you want something on top (a store, online fee payments, custom design, several clubs), we will talk it through and agree on the price separately.",
+    "extrasNote": "The plan price covers what is listed in it. If you want something on top (a store, online fee payments, custom design, more locations), we will talk it through and agree on the price separately.",
     "sendInquiry": "Send an inquiry",
-    "inquiryHint": "An inquiry is free and commits you to nothing. We will reply within 1 business day, and once we agree you can pay from your account."
+    "inquiryHint": "An inquiry is free and commits you to nothing. We will reply within 1 business day, and once we agree you can pay from your account.",
+    "plan": "Plan",
+    "breakdown": "Build {{setup}} € + first month {{monthly}} €, then {{monthly}} € a month",
+    "quotedSummary": "Estimate",
+    "quotedHint": "From {{setup}} € build and from {{monthly}} € a month. Exact price after a call."
   },
   "account": {
     "title": "My account",
@@ -331,7 +355,8 @@
     "cancelPending": "Cancel order",
     "cancelPendingBody": "The order will be cancelled. Nothing has been paid, so nothing is charged.",
     "inquiryNote": "Inquiry sent. We will reply within 1 business day, and once we agree a payment button will appear here.",
-    "cancelInquiry": "Withdraw inquiry"
+    "cancelInquiry": "Withdraw inquiry",
+    "plan": "Plan"
   },
   "legal": {
     "back": "Home",
@@ -350,5 +375,117 @@
     "Gymnastics",
     "Dance",
     "Fitness"
-  ]
+  ],
+  "businessBand": [
+    "Salons",
+    "Restaurants",
+    "Stores",
+    "Schools",
+    "Gyms",
+    "Cafés",
+    "Studios",
+    "Events",
+    "Companies",
+    "Academies"
+  ],
+  "plans": {
+    "from": "from",
+    "perMonth": "/month",
+    "setup": "setup",
+    "popular": "Most popular",
+    "ctaPick": "Choose",
+    "ctaQuote": "Ask for a quote",
+    "site": {
+      "name": "Website",
+      "tagline": "For anyone who wants to be found online.",
+      "features": [
+        "Up to 5 pages: home, services, about, gallery, contact",
+        "News or a blog",
+        "Map and contact form",
+        "Hosting, SSL and backups",
+        "Up to 2 small changes a month"
+      ]
+    },
+    "club": {
+      "name": "Club",
+      "tagline": "Website and app for a sports club.",
+      "features": [
+        "Everything in Website",
+        "Student app: schedule, level, fees, competitions",
+        "Attendance and payments by the coach",
+        "Groups, halls and announcements",
+        "We enter and maintain the data"
+      ]
+    },
+    "club_pro": {
+      "name": "Club Pro",
+      "tagline": "A club with a store and a full admin panel.",
+      "features": [
+        "Everything in Club",
+        "Store for gear and clothing",
+        "Orders panel",
+        "Club statistics",
+        "Priority support"
+      ]
+    },
+    "store": {
+      "name": "Online store",
+      "tagline": "Just a store, no app.",
+      "features": [
+        "Products, categories and a cart",
+        "Orders panel",
+        "Delivery with Econt or Speedy",
+        "Payments through your own provider",
+        "Price depends on products and integrations"
+      ]
+    },
+    "custom": {
+      "name": "Custom system",
+      "tagline": "A system built for your business.",
+      "features": [
+        "Bookings, memberships, orders, internal tools",
+        "Exact quote after a short call",
+        "Built on our proven platform"
+      ]
+    }
+  },
+  "beyond": {
+    "title": "Not just for the tatami",
+    "body": "We started with sports clubs, which is why everything looks like a dojo. The same platform builds websites and systems for any kind of business.",
+    "cta": "Tell us your idea",
+    "cards": {
+      "bookings": {
+        "title": "Bookings",
+        "desc": "Salons, dentists, courts, lessons. Free slots and reminders."
+      },
+      "gyms": {
+        "title": "Gyms and studios",
+        "desc": "Memberships, check-in and renewals, no paper lists."
+      },
+      "schools": {
+        "title": "Schools and academies",
+        "desc": "Parents, attendance and fees in one place."
+      },
+      "restaurants": {
+        "title": "Restaurants",
+        "desc": "QR menus and ordering straight from the table."
+      },
+      "events": {
+        "title": "Events",
+        "desc": "Registrations, tickets and QR check-in."
+      },
+      "internal": {
+        "title": "Internal tools",
+        "desc": "Clients, orders, stock and reports for your team."
+      },
+      "stores": {
+        "title": "Online stores",
+        "desc": "Products, cart, orders and delivery."
+      },
+      "content": {
+        "title": "Content",
+        "desc": "Social media posts and photos that get you noticed."
+      }
+    }
+  }
 }

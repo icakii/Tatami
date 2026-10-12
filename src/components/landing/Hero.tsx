@@ -149,16 +149,6 @@ export function Hero() {
               ))}
             <span className="inline-block whitespace-nowrap">
               <RotatingSport words={t('hero.sports', { returnObjects: true }) as string[]} reduced={reduced} />
-            <span className="inline-block overflow-hidden pb-1 align-bottom">
-              <motion.span
-                className="inline-block"
-                initial={reduced ? false : { y: '110%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
-              >
-                &nbsp;{t('hero.titleAfter')}
-              </motion.span>
-            </span>
             </span>
           </h1>
           <motion.p
@@ -176,7 +166,7 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center gap-3"
           >
             <Link
-              to="/order"
+              to="/#pricing"
               className="rounded-full bg-aka px-7 py-3.5 font-display text-sm uppercase tracking-wider text-shiro shadow-[0_14px_30px_-12px_rgba(194,54,31,0.9)] transition-transform hover:-translate-y-0.5"
             >
               {t('hero.ctaOrder')}

@@ -1,7 +1,7 @@
 import { initializePaddle, type Paddle } from '@paddle/paddle-js'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
-import { PADDLE_DOMAIN_PRICE_ID, PADDLE_MONTHLY_PRICE_ID } from '../lib/paddle'
+import { PADDLE_DOMAIN_PRICE_ID, planById, type PlanId } from '../lib/paddle'
 import { supabase } from '../lib/supabaseClient'
 
 export type DomainOption = 'subdomain' | 'own' | 'new'
@@ -9,6 +9,7 @@ export type DomainOption = 'subdomain' | 'own' | 'new'
 export interface Order {
   id: string
   club_name: string
+  plan: PlanId
   contact_name: string
   email: string
   domain_option: DomainOption
@@ -25,7 +26,7 @@ export function useOrders(userId: string | undefined) {
     queryFn: async (): Promise<Order[]> => {
       const { data, error } = await supabase
         .from('orders')
-        .select('id, club_name, contact_name, email, domain_option, domain, status, paid_until, cancel_at, created_at')
+        .select('id, club_name, plan, contact_name, email, domain_option, domain, status, paid_until, cancel_at, created_at')
         .order('created_at', { ascending: false })
       if (error) throw error
       return data as Order[]
@@ -45,6 +46,7 @@ export interface NewOrder {
   domain: string | null
   notes: string | null
   status: 'inquiry' | 'pending_payment'
+  plan: PlanId
 }
 
 export function useCreateOrder() {
@@ -93,10 +95,15 @@ export function usePaddle(onCompleted: () => void) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  function openCheckout(order: { id: string; email: string; domain_option: DomainOption }) {
+  // Setup fee (one-off) + first month (+ domain add-on), all in one checkout;
+  // Paddle charges the one-off price once and renews the monthly ones.
+  function openCheckout(order: { id: string; email: string; domain_option: DomainOption; plan: PlanId }) {
+    const plan = planById(order.plan)
+    if (!plan.setupPriceId || !plan.monthlyPriceId) return
     paddle?.Checkout.open({
       items: [
-        { priceId: PADDLE_MONTHLY_PRICE_ID, quantity: 1 },
+        { priceId: plan.setupPriceId, quantity: 1 },
+        { priceId: plan.monthlyPriceId, quantity: 1 },
         ...(order.domain_option === 'new' ? [{ priceId: PADDLE_DOMAIN_PRICE_ID, quantity: 1 }] : []),
       ],
       customer: { email: order.email },

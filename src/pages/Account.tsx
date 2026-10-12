@@ -112,7 +112,7 @@ export function Account() {
                 <div>
                   <p className="font-display text-xl font-semibold uppercase tracking-wide text-shiro">{order.club_name}</p>
                   <p className="mt-1 text-sm text-shiro/50">
-                    {t(`account.domainOption.${order.domain_option}`)}
+                    {t(`plans.${order.plan ?? 'club'}.name`)} · {t(`account.domainOption.${order.domain_option}`)}
                     {order.domain ? ` · ${order.domain}` : ''}
                   </p>
                 </div>

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { AuthShell, FormError, inputClass, labelClass, primaryButton } from '../components/AuthShell'
 import { useAuth } from '../hooks/useAuth'
 import { useCreateOrder, usePaddle, type DomainOption } from '../hooks/useOrders'
-import { DOMAIN_EUR, MONTHLY_EUR } from '../lib/paddle'
+import { DOMAIN_EUR, PLANS, planById, type PlanId } from '../lib/paddle'
 
 const DOMAINS: DomainOption[] = ['subdomain', 'own', 'new']
 
@@ -25,11 +25,15 @@ export function Order() {
     domain: '',
     notes: '',
   })
+  const [params] = useSearchParams()
+  const [planId, setPlanId] = useState<PlanId>(planById(params.get('plan')).id)
+  const plan = planById(planId)
   const [domainOption, setDomainOption] = useState<DomainOption>('subdomain')
   const [accepted, setAccepted] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const total = MONTHLY_EUR + (domainOption === 'new' ? DOMAIN_EUR : 0)
+  const monthly = plan.monthly + (domainOption === 'new' ? DOMAIN_EUR : 0)
+  const today = plan.setup + monthly
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [key]: e.target.value }))
 
@@ -37,7 +41,7 @@ export function Order() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const paying = mode === 'pay'
+    const paying = mode === 'pay' && !plan.quoted
     if (form.notes.trim().length < 10) return setError(t('order.errors.notes'))
     if (paying && !accepted) return setError(t('order.errors.terms'))
     if (paying && !ready) return setError(t('order.errors.payments'))
@@ -55,8 +59,9 @@ export function Order() {
         domain: domainOption === 'subdomain' ? null : form.domain.trim().toLowerCase() || null,
         notes: form.notes.trim() || null,
         status: paying ? 'pending_payment' : 'inquiry',
+        plan: plan.id,
       })
-      if (paying) openCheckout({ id, email, domain_option: domainOption })
+      if (paying) openCheckout({ id, email, domain_option: domainOption, plan: plan.id })
       else navigate('/account?inquiry=1')
     } catch (err) {
       setError(err instanceof Error && err.message.includes('Too many') ? err.message : t('order.errors.generic'))
@@ -67,6 +72,40 @@ export function Order() {
     <AuthShell title={t('order.title')} wide>
       <p className="mt-2 text-shiro/60">{t('order.subtitle')}</p>
       <form onSubmit={onSubmit} className="mt-7 space-y-5">
+        <fieldset>
+          <legend className={labelClass}>{t('order.plan')}</legend>
+          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-5">
+            {PLANS.map((p) => {
+              const active = p.id === planId
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setPlanId(p.id)}
+                  aria-pressed={active}
+                  className={`relative rounded-2xl border px-3 py-3 text-left transition-colors ${
+                    active ? 'border-straw bg-straw/10' : 'border-shiro/10 hover:border-shiro/30'
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="plan-ring"
+                      className="pointer-events-none absolute inset-0 rounded-2xl ring-2 ring-straw"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span className="block font-display text-sm uppercase tracking-wide text-shiro">{t(`plans.${p.id}.name`)}</span>
+                  <span className="mt-1 block text-xs text-straw">
+                    {p.quoted ? t('plans.from') + ' ' : ''}
+                    {p.monthly} €{t('plans.perMonth')}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+          <p className="mt-2 text-xs text-shiro/50">{t(`plans.${plan.id}.tagline`)}</p>
+        </fieldset>
+
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="block">
             <span className={labelClass}>{t('order.contactName')}</span>
@@ -156,14 +195,22 @@ export function Order() {
 
         <div className="flex items-center justify-between rounded-2xl border border-straw/25 bg-night px-5 py-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.15em] text-shiro/50">{t('order.summary')}</p>
-            <p className="text-xs text-shiro/40">{t('order.firstMonth')}</p>
+            <p className="text-xs uppercase tracking-[0.15em] text-shiro/50">
+              {plan.quoted ? t('order.quotedSummary') : t('order.summary')}
+            </p>
+            <p className="mt-1 text-xs text-shiro/40">
+              {plan.quoted
+                ? t('order.quotedHint', { setup: plan.setup, monthly })
+                : t('order.breakdown', { setup: plan.setup, monthly })}
+            </p>
           </div>
-          <motion.p key={total} initial={{ scale: 1.15 }} animate={{ scale: 1 }} className="font-display text-3xl text-shiro">
-            {total} <span className="text-straw">€</span>
+          <motion.p key={`${plan.id}-${today}`} initial={{ scale: 1.15 }} animate={{ scale: 1 }} className="shrink-0 font-display text-3xl text-shiro">
+            {plan.quoted && <span className="mr-1 text-base text-shiro/50">{t('plans.from')}</span>}
+            {today} <span className="text-straw">€</span>
           </motion.p>
         </div>
 
+        {!plan.quoted && (
         <label className="flex items-start gap-3 text-sm text-shiro/65">
           <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className="mt-1 h-4 w-4 accent-aka" />
           <span>
@@ -173,9 +220,10 @@ export function Order() {
             </Link>
           </span>
         </label>
+        )}
 
         <FormError message={error} />
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className={`grid gap-3 ${plan.quoted ? '' : 'sm:grid-cols-2'}`}>
           <button
             type="submit"
             onClick={() => setMode('inquiry')}
@@ -184,6 +232,7 @@ export function Order() {
           >
             {createOrder.isPending && mode === 'inquiry' ? '...' : t('order.sendInquiry')}
           </button>
+          {!plan.quoted && (
           <button
             type="submit"
             onClick={() => setMode('pay')}
@@ -192,6 +241,7 @@ export function Order() {
           >
             {createOrder.isPending && mode === 'pay' ? t('order.processing') : t('order.submit')}
           </button>
+          )}
         </div>
         <p className="text-center text-xs text-shiro/40">{t('order.inquiryHint')}</p>
       </form>

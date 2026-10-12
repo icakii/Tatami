@@ -1,6 +1,7 @@
 import { Footer, Nav } from '../components/Brand'
 import { Examples } from '../components/landing/Examples'
 import { Contact, Faq } from '../components/landing/FaqContact'
+import { BeyondSports } from '../components/landing/BeyondSports'
 import { Hero } from '../components/landing/Hero'
 import { HowItWorks } from '../components/landing/HowItWorks'
 import { Pricing } from '../components/landing/Pricing'
@@ -18,6 +19,7 @@ export function Landing() {
       <ShowcaseBand />
       <ManagedService />
       <Examples />
+      <BeyondSports />
       <Pricing />
       <Faq />
       <Contact />
