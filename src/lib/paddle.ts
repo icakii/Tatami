@@ -26,9 +26,11 @@ export const PLANS: Plan[] = [
   {
     id: 'club',
     setup: 350,
-    monthly: 99,
+    monthly: 110,
     quoted: false,
     setupPriceId: 'pri_01m4rt4m419vtj6qp5348qk1x0',
+    // Still the old 99 EUR price: replace with the ID printed by TatamiHub
+    // scripts/seed-paddle-club-110.ts.
     monthlyPriceId: 'pri_01m4gns82gsevvr8dn491mq5xh',
   },
   {

@@ -115,7 +115,7 @@ export function Examples() {
                   {[
                     ['bg-jade', '12'],
                     ['bg-aka', '2'],
-                    ['bg-straw', '99 €'],
+                    ['bg-straw', '110 €'],
                   ].map(([accent, value], i) => (
                     <motion.div
                       key={i}

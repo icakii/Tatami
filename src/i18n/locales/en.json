@@ -120,7 +120,7 @@
     "services": "Services"
   },
   "hero": {
-    "eyebrow": "Born on the tatami. For every club and business.",
+    "eyebrow": "Born on the tatami. For every martial arts club.",
     "title": "A website, an app and the admin work for your club",
     "body": "We build the website and app, enter your data and keep everything running. You run your club or business.",
     "ctaOrder": "See the plans",
@@ -130,12 +130,12 @@
     "sports": [
       "karate club",
       "judo club",
-      "football club",
-      "dance club",
-      "gym",
-      "salon",
-      "restaurant",
-      "business"
+      "taekwondo club",
+      "jiu-jitsu club",
+      "aikido club",
+      "kickboxing club",
+      "wrestling club",
+      "MMA club"
     ]
   },
   "how": {
@@ -366,27 +366,13 @@
     "Karate",
     "Judo",
     "Taekwondo",
-    "Boxing",
-    "Football",
-    "Basketball",
-    "Volleyball",
-    "Tennis",
-    "Swimming",
-    "Gymnastics",
-    "Dance",
-    "Fitness"
-  ],
-  "businessBand": [
-    "Salons",
-    "Restaurants",
-    "Stores",
-    "Schools",
-    "Gyms",
-    "Cafés",
-    "Studios",
-    "Events",
-    "Companies",
-    "Academies"
+    "Jiu-jitsu",
+    "Aikido",
+    "Kickboxing",
+    "Wrestling",
+    "Sambo",
+    "MMA",
+    "Kendo"
   ],
   "plans": {
     "from": "from",
@@ -408,24 +394,25 @@
     },
     "club": {
       "name": "Club",
-      "tagline": "Website, app and a panel you run the club with yourself.",
+      "tagline": "Website and app for the club. We enter the data.",
       "features": [
         "Club website: schedule, coaches, news, gallery",
-        "Student app: schedule, level, fees, competitions",
-        "Admin panel: add students, change belts and create classes yourself",
-        "Attendance and fee payments",
+        "Student app with the club logo: schedule, level, fees, competitions",
+        "We enter the students: photos, phones, emails, parents, belts, classes",
+        "Coaches only mark attendance and paid fees",
+        "We send the news and notifications to students",
         "Up to 75 students"
       ]
     },
     "club_pro": {
       "name": "Club Pro",
-      "tagline": "We run everything for you.",
+      "tagline": "Everything in Club, plus a store and extras.",
       "features": [
         "Everything in Club, no student limit",
-        "We enter students, change belts and create classes for you",
-        "A small store for club gear",
-        "Club statistics",
-        "Priority support"
+        "Store: a reserved kimono shows up for the coach with the child’s height and age",
+        "QR check-in: students scan the code in the hall and attendance marks itself",
+        "Star grades from the coach, like at school (optional)",
+        "Club statistics and priority support"
       ]
     },
     "store": {
@@ -486,6 +473,35 @@
         "title": "Content",
         "desc": "Social media posts and photos that get you noticed."
       }
+    }
+  },
+  "sportsBand2": [
+    "Brazilian jiu-jitsu",
+    "Muay Thai",
+    "Kung fu",
+    "Wushu",
+    "Hapkido",
+    "Krav Maga",
+    "Sumo",
+    "Kyokushin"
+  ],
+  "install": {
+    "title": "On the phone in 5 seconds",
+    "body": "The club app opens from the club website and goes on the home screen with the club logo. No download, no store account, no waiting for updates.",
+    "steps": [
+      "Open the club website",
+      "Tap \"Add to phone\"",
+      "The club icon is on your screen"
+    ],
+    "storesEyebrow": "Coming to the stores",
+    "playSmall": "App on",
+    "appleSmall": "App on the",
+    "soon": "Soon",
+    "storesNote": "We are building the apps for Google Play and the App Store. Until then the web app does the same and updates itself.",
+    "mock": {
+      "button": "Add to phone",
+      "confirm": "Add",
+      "opened": "Opened as an app"
     }
   }
 }

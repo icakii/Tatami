@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { AppShowcase } from '../showcase/AppShowcase'
 import { CompetitionsShowcase } from '../showcase/CompetitionsShowcase'
+import { InstallShowcase } from '../showcase/InstallShowcase'
 import { PaymentShowcase } from '../showcase/PaymentShowcase'
 
 // The night page opens onto a sheet of washi: the student-facing app is
@@ -38,6 +39,7 @@ export function ShowcaseBand() {
         </h2>
       </div>
       <AppShowcase />
+      <InstallShowcase />
       <CompetitionsShowcase />
       <PaymentShowcase />
       <svg

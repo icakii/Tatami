@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-// Two endless strips under the hero, running opposite ways: sports on top,
-// every other kind of business underneath. Tatami started on the mat but
-// isn't only for it. Pure CSS marquees (each list doubled so the loop has
-// no seam).
+// Two endless strips under the hero, running opposite ways, both with
+// sports practised on the tatami (the pitch to other businesses lives in its
+// own section further down). Pure CSS marquees (each list doubled so the
+// loop has no seam).
 function Row({ items, reverse, dim }: { items: string[]; reverse?: boolean; dim?: boolean }) {
   const row = [...items, ...items]
   return (
@@ -26,17 +26,17 @@ function Row({ items, reverse, dim }: { items: string[]; reverse?: boolean; dim?
 export function SportsBand() {
   const { t } = useTranslation()
   const sports = t('sportsBand', { returnObjects: true }) as string[]
-  const businesses = t('businessBand', { returnObjects: true }) as string[]
+  const more = t('sportsBand2', { returnObjects: true }) as string[]
 
   return (
     <div
       className="relative space-y-3 overflow-hidden border-y border-straw/15 bg-night-2/80 py-5"
-      aria-label={[...sports, ...businesses].join(', ')}
+      aria-label={[...sports, ...more].join(', ')}
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-night to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-night to-transparent" />
       <Row items={sports} />
-      <Row items={businesses} reverse dim />
+      <Row items={more} reverse dim />
     </div>
   )
 }
