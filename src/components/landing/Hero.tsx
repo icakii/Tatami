@@ -129,7 +129,12 @@ export function Hero() {
             transition={{ duration: 0.7, ease: EASE }}
             className="flex items-center gap-3 font-display text-xs uppercase tracking-[0.3em] text-straw"
           >
-            <span className="h-px w-10 bg-straw/60" />
+            <span
+              className="flex h-6 w-6 shrink-0 -rotate-6 items-center justify-center rounded-[4px] bg-aka font-brush text-sm leading-none tracking-normal text-shiro shadow-[0_6px_14px_-6px_rgba(194,54,31,0.9)]"
+              aria-hidden="true"
+            >
+              畳
+            </span>
             {t('hero.eyebrow')}
           </motion.p>
           <h1 className="mt-6 font-display text-4xl font-bold uppercase leading-[1.05] tracking-wide text-shiro sm:text-5xl lg:text-6xl">
