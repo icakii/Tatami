@@ -100,6 +100,7 @@ export function usePaddle(onCompleted: () => void) {
   function openCheckout(order: { id: string; email: string; domain_option: DomainOption; plan: PlanId }) {
     const plan = planById(order.plan)
     if (!plan.setupPriceId || !plan.monthlyPriceId) return
+    if (order.domain_option === 'new' && !PADDLE_DOMAIN_PRICE_ID) return
     paddle?.Checkout.open({
       items: [
         { priceId: plan.setupPriceId, quantity: 1 },
