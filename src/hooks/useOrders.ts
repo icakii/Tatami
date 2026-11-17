@@ -63,6 +63,22 @@ export function useCreateOrder() {
   })
 }
 
+// A request ("Поискай оферта"), with or without an account. The function
+// writes the row server-side so visitors don't need to sign up first.
+export function useSubmitInquiry() {
+  return useMutation({
+    mutationFn: async (order: Omit<NewOrder, 'status'> & { website: string }) => {
+      const { data, error } = await supabase.functions.invoke('submit-inquiry', { body: order })
+      if (error) {
+        const ctx = (error as { context?: Response }).context
+        const msg = ctx ? ((await ctx.json().catch(() => null)) as { error?: string } | null)?.error : null
+        throw new Error(msg ?? error.message)
+      }
+      return data
+    },
+  })
+}
+
 export function useCancelOrder() {
   const queryClient = useQueryClient()
   return useMutation({

@@ -49,14 +49,8 @@ export default function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
-        <Route
-          path="/order"
-          element={
-            <RequireAuth>
-              <Order />
-            </RequireAuth>
-          }
-        />
+        {/* Open to everyone: an order is a request, no account needed. */}
+        <Route path="/order" element={<Order />} />
         <Route
           path="/account"
           element={

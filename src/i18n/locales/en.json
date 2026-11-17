@@ -322,7 +322,11 @@
     "plan": "Plan",
     "breakdown": "Build {{setup}} € + first month {{monthly}} €, then {{monthly}} € a month",
     "quotedSummary": "Example price",
-    "quotedHint": "From {{setup}} € build and from {{monthly}} € a month. Exact price after a call."
+    "quotedHint": "From {{setup}} € build and from {{monthly}} € a month. Exact price after a call.",
+    "email": "Email",
+    "sentTitle": "Request sent",
+    "sentBody": "Thank you! We will write to {{email}} within 1 business day to agree the details and the price. You pay nothing now.",
+    "backHome": "Back to the home page"
   },
   "account": {
     "title": "My account",

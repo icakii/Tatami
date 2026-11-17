@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { AuthShell, FormError, inputClass, labelClass, primaryButton } from '../components/AuthShell'
 import { useAuth } from '../hooks/useAuth'
-import { useCreateOrder, usePaddle, type DomainOption } from '../hooks/useOrders'
+import { useCreateOrder, usePaddle, useSubmitInquiry, type DomainOption } from '../hooks/useOrders'
 import { DOMAIN_EUR, PLANS, planById, type PlanId } from '../lib/paddle'
 
 const DOMAINS: DomainOption[] = ['subdomain', 'own', 'new']
@@ -14,12 +14,16 @@ export function Order() {
   const { session } = useAuth()
   const navigate = useNavigate()
   const createOrder = useCreateOrder()
+  const submitInquiry = useSubmitInquiry()
+  const [sent, setSent] = useState(false)
   const { ready, openCheckout } = usePaddle(() => navigate('/account?paid=1'))
 
   const [form, setForm] = useState({
     contact_name: (session?.user.user_metadata?.full_name as string | undefined) ?? '',
+    email: '',
     phone: '',
     club_name: '',
+    website: '',
     city: '',
     student_count: '',
     domain: '',
@@ -45,28 +49,50 @@ export function Order() {
     if (form.notes.trim().length < 10) return setError(t('order.errors.notes'))
     if (paying && !accepted) return setError(t('order.errors.terms'))
     if (paying && !ready) return setError(t('order.errors.payments'))
+    if (paying && !session) return navigate('/login?next=/order')
     setError(null)
-    const email = session?.user.email ?? ''
+    const email = session?.user.email ?? form.email.trim()
+    const details = {
+      contact_name: form.contact_name.trim(),
+      email,
+      phone: form.phone.trim() || null,
+      club_name: form.club_name.trim(),
+      city: form.city.trim() || null,
+      student_count: form.student_count ? Number(form.student_count) : null,
+      domain_option: domainOption,
+      domain: domainOption === 'subdomain' ? null : form.domain.trim().toLowerCase() || null,
+      notes: form.notes.trim() || null,
+      plan: plan.id,
+    }
     try {
-      const id = await createOrder.mutateAsync({
-        contact_name: form.contact_name.trim(),
-        email,
-        phone: form.phone.trim() || null,
-        club_name: form.club_name.trim(),
-        city: form.city.trim() || null,
-        student_count: form.student_count ? Number(form.student_count) : null,
-        domain_option: domainOption,
-        domain: domainOption === 'subdomain' ? null : form.domain.trim().toLowerCase() || null,
-        notes: form.notes.trim() || null,
-        status: paying ? 'pending_payment' : 'inquiry',
-        plan: plan.id,
-      })
-      if (paying) openCheckout({ id, email, domain_option: domainOption, plan: plan.id })
-      else navigate('/account?inquiry=1')
+      if (paying) {
+        const id = await createOrder.mutateAsync({ ...details, status: 'pending_payment' })
+        openCheckout({ id, email, domain_option: domainOption, plan: plan.id })
+      } else {
+        // A request goes through the server, signed in or not.
+        await submitInquiry.mutateAsync({ ...details, website: form.website })
+        if (session) navigate('/account?inquiry=1')
+        else setSent(true)
+      }
     } catch (err) {
       setError(err instanceof Error && err.message.includes('Too many') ? err.message : t('order.errors.generic'))
     }
   }
+
+  if (sent) {
+    return (
+      <AuthShell title={t('order.sentTitle')}>
+        <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-3 leading-relaxed text-shiro/70">
+          {t('order.sentBody', { email: form.email.trim() })}
+        </motion.p>
+        <Link to="/" className={`${primaryButton} mt-8 flex items-center justify-center`}>
+          {t('order.backHome')}
+        </Link>
+      </AuthShell>
+    )
+  }
+
+  const pending = createOrder.isPending || submitInquiry.isPending
 
   return (
     <AuthShell title={t('order.title')} wide>
@@ -111,6 +137,12 @@ export function Order() {
             <span className={labelClass}>{t('order.contactName')}</span>
             <input required maxLength={120} value={form.contact_name} onChange={set('contact_name')} className={inputClass} />
           </label>
+          {!session && (
+            <label className="block">
+              <span className={labelClass}>{t('order.email')}</span>
+              <input required type="email" maxLength={200} autoComplete="email" value={form.email} onChange={set('email')} className={inputClass} />
+            </label>
+          )}
           <label className="block">
             <span className={labelClass}>{t('order.phone')}</span>
             <input type="tel" maxLength={40} value={form.phone} onChange={set('phone')} className={inputClass} />
@@ -123,7 +155,9 @@ export function Order() {
             <span className={labelClass}>{t('order.city')}</span>
             <input maxLength={80} value={form.city} onChange={set('city')} className={inputClass} />
           </label>
-          <label className="block sm:col-span-2">
+          {/* Honeypot: hidden from people, filled in by bots. */}
+          <input tabIndex={-1} autoComplete="off" aria-hidden="true" value={form.website} onChange={set('website')} className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+          <label className={`block ${session ? 'sm:col-span-2' : ''}`}>
             <span className={labelClass}>{t('order.students')}</span>
             <input type="number" min={0} max={5000} value={form.student_count} onChange={set('student_count')} className={inputClass} />
           </label>
@@ -227,19 +261,19 @@ export function Order() {
           <button
             type="submit"
             onClick={() => setMode('inquiry')}
-            disabled={createOrder.isPending}
+            disabled={pending}
             className={primaryButton}
           >
-            {createOrder.isPending && mode === 'inquiry' ? '...' : t('order.sendInquiry')}
+            {pending && mode === 'inquiry' ? '...' : t('order.sendInquiry')}
           </button>
           {!plan.quoted && (
           <button
             type="submit"
             onClick={() => setMode('pay')}
-            disabled={createOrder.isPending}
+            disabled={pending}
             className="min-h-12 w-full rounded-full border border-straw/50 px-6 font-display text-sm uppercase tracking-wider text-straw transition-colors hover:bg-straw hover:text-night disabled:opacity-60"
           >
-            {createOrder.isPending && mode === 'pay' ? t('order.processing') : t('order.submit')}
+            {pending && mode === 'pay' ? t('order.processing') : t('order.submit')}
           </button>
           )}
         </div>
