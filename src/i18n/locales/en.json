@@ -21,18 +21,18 @@
     }
   },
   "paymentShowcase": {
-    "title": "Pay your fee online",
-    "body": "Monthly fees are paid straight from the app or the website, in seconds, no cash in envelopes, no bank transfers to chase, no awkward reminders.",
+    "title": "Fees under control",
+    "body": "The coach marks fees as paid with one tap: cash, card on the POS terminal or bank transfer. Parents see right away in the app until when it is paid.",
     "points": {
-      "instant": "Pay by card in a few taps, from your phone or computer",
-      "anywhere": "Works the same in the app and on the website",
-      "status": "Your status flips to paid the moment it goes through"
+      "instant": "\"Paid\" with one tap: cash, card or bank",
+      "anywhere": "Parents see the status in the app",
+      "status": "Anyone 3+ months behind stands out at once"
     },
     "mock": {
       "label": "Monthly fee",
       "period": "October · Advanced group",
       "stamp": "Paid",
-      "cta": "Pay now",
+      "cta": "Marked: cash",
       "history": "History",
       "sep": "September",
       "aug": "August"
@@ -182,7 +182,7 @@
   },
   "pricing": {
     "title": "Pricing",
-    "body": "Pay for the build once, then a monthly fee. No contract, cancel whenever you want.",
+    "body": "Example prices. We agree the exact price after a short call, based on your club and what you need.",
     "quotedTitle": "By quote",
     "addOnsTitle": "Domain",
     "addOns": {
@@ -208,7 +208,7 @@
       }
     },
     "vatNote": "All prices include VAT.",
-    "terms": "The build and the first month are paid when you order; after that the subscription renews every month. Cancel any time from your account and the service stays active until the end of the paid period. Payments are non-refundable.",
+    "terms": "An order is a request, with no online payment. Once we agree, you pay the build and the monthly fee by bank transfer or cash, against an invoice. No contract: cancel whenever you want.",
     "domainTitle": "Website address",
     "domains": {
       "subdomain": {
@@ -295,7 +295,7 @@
   },
   "order": {
     "title": "Order",
-    "subtitle": "Tell us what you need. Send an inquiry first and pay once we agree, or pay right away.",
+    "subtitle": "Tell us what you need. This is a request: you pay nothing now. We will call you and agree the details and the price.",
     "contactName": "Your name",
     "phone": "Phone",
     "clubName": "Club or business name",
@@ -318,10 +318,10 @@
     "notesPlaceholder": "For example: a site with the schedule and coaches, an app for about 60 students, online trial sign-ups, our logo and colors...",
     "extrasNote": "The plan price covers what is listed in it. If you want something on top, we will talk it through and agree on the price separately.",
     "sendInquiry": "Send an inquiry",
-    "inquiryHint": "An inquiry is free and commits you to nothing. We will reply within 1 business day, and once we agree you can pay from your account.",
+    "inquiryHint": "A request is free and commits you to nothing. We reply within 1 business day. Payment is by bank transfer or cash, once we agree.",
     "plan": "Plan",
     "breakdown": "Build {{setup}} € + first month {{monthly}} €, then {{monthly}} € a month",
-    "quotedSummary": "Estimate",
+    "quotedSummary": "Example price",
     "quotedHint": "From {{setup}} € build and from {{monthly}} € a month. Exact price after a call."
   },
   "account": {
@@ -354,7 +354,7 @@
     },
     "cancelPending": "Cancel order",
     "cancelPendingBody": "The order will be cancelled. Nothing has been paid, so nothing is charged.",
-    "inquiryNote": "Inquiry sent. We will reply within 1 business day, and once we agree a payment button will appear here.",
+    "inquiryNote": "Request sent. We will reply within 1 business day to agree the details and the price.",
     "cancelInquiry": "Withdraw inquiry",
     "plan": "Plan"
   },
@@ -394,12 +394,12 @@
     },
     "club": {
       "name": "Club",
-      "tagline": "Website and app for the club. We enter the data.",
+      "tagline": "Website and app for the club. We enter the starting data.",
       "features": [
         "Club website: schedule, coaches, news, gallery",
         "Student app with the club logo: schedule, level, fees, competitions",
-        "We enter the students: photos, phones, emails, parents, belts, classes",
-        "Coaches only mark attendance and paid fees",
+        "We enter your students at the start: photos, phones, parents, belts, classes",
+        "Coaches add new students and mark attendance and fees",
         "We send the news and notifications to students",
         "Up to 75 students"
       ]

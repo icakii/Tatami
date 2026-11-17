@@ -87,8 +87,8 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
 export function Pricing() {
   const { t } = useTranslation()
-  const fixed = PLANS.filter((p) => !p.quoted)
-  const quoted = PLANS.filter((p) => p.quoted)
+  const fixed = PLANS.filter((p) => p.main)
+  const quoted = PLANS.filter((p) => !p.main)
 
   return (
     <section id="pricing" className="scroll-mt-16 px-5 py-20 sm:py-28">

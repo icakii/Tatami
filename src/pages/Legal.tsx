@@ -13,15 +13,15 @@ const TERMS: Record<'bg' | 'en', Doc> = {
       {
         h: '2. Абонамент и плащане',
         p: [
-          'Цената зависи от избрания план (изработка плюс месечна такса) или от индивидуалната оферта, която сте приели, плюс 10 € на месец за нов домейн, управляван от нас. Изработката и първият месец се плащат при поръчката. Всички цени са с включен ДДС.',
-          'Абонаментът се подновява автоматично всеки месец, докато не бъде прекратен.',
-          'Плащанията се обработват от Paddle.com, който е търговецът (Merchant of Record) за всички поръчки. Paddle издава фактурите и обработва данните за картата; ние не ги виждаме и не ги съхраняваме.',
+          'Поръчката през сайта е запитване. Цената (изработка плюс месечна поддръжка) договаряме с вас след разговор; цените на сайта са примерни. Нов домейн, управляван от нас, е 10 € на месец. Всички цени са с включен ДДС.',
+          'Плащате по банков път или в брой, срещу фактура: изработката след като се разберем, а месечната поддръжка всеки месец, докато услугата не бъде прекратена.',
+          'Сайтът не приема плащания онлайн и не събира данни за карти.',
         ],
       },
       {
         h: '3. Прекратяване и възстановяване',
         p: [
-          'Можете да прекратите абонамента по всяко време от профила си. Прекратяването важи от края на текущия платен период; дотогава услугата остава активна.',
+          'Можете да прекратите услугата по всяко време, като ни пишете. Прекратяването важи от края на текущия платен месец; дотогава услугата остава активна.',
           'Платени суми не се възстановяват, включително за неизползваната част от месеца, освен когато закон изисква друго.',
           'След края на платения период сайтът и приложението на клуба се спират. При поискване в рамките на 30 дни можем да ви изпратим данните на клуба.',
         ],
@@ -40,9 +40,9 @@ const TERMS: Record<'bg' | 'en', Doc> = {
       {
         h: '2. Subscription and payment',
         p: [
-          'The price depends on the chosen plan (a build fee plus a monthly fee) or on the individual quote you accepted, plus 10 € per month for a new domain managed by us. The build and the first month are paid when you order. All prices include VAT.',
-          'The subscription renews automatically every month until cancelled.',
-          'Payments are processed by Paddle.com, the Merchant of Record for all orders. Paddle issues the invoices and handles card details; we never see or store them.',
+          'An order on the site is a request. We agree the price (a build fee plus a monthly fee) with you after a call; prices on the site are examples. A new domain managed by us is 10 € per month. All prices include VAT.',
+          'You pay by bank transfer or cash against an invoice: the build once we agree, and the monthly fee every month until the service is cancelled.',
+          'The site takes no online payments and collects no card details.',
         ],
       },
       {
@@ -72,12 +72,12 @@ const PRIVACY: Record<'bg' | 'en', Doc> = {
         p: [
           'Акаунт: име, имейл и парола (паролата се пази само като хеш).',
           'Поръчка: името на клуба, град, телефон, домейн и бележките, които попълвате.',
-          'Плащане: обработва се от Paddle. Получаваме само статуса на плащането и идентификатори на абонамента, не и данни за картата.',
+          'Плащане: по банков път или в брой; пазим само счетоводните документи (фактури).',
         ],
       },
       { h: 'Защо', p: ['За да изпълним поръчката, да поддържаме услугата, да се свържем с вас за нея и да спазим счетоводните си задължения.'] },
       { h: 'Данните на учениците', p: ['Данните на учениците на клуба се обработват от нас от името на клуба. Клубът е администраторът на тези данни, а ние сме обработващ.'] },
-      { h: 'Къде се съхраняват', p: ['В базата данни на Supabase и при Paddle за плащанията. Не продаваме и не споделяме данни с рекламодатели. Сайтът не използва рекламни или проследяващи бисквитки.'] },
+      { h: 'Къде се съхраняват', p: ['В базата данни на Supabase. Не продаваме и не споделяме данни с рекламодатели. Сайтът не използва рекламни или проследяващи бисквитки.'] },
       { h: 'Колко време', p: ['Докато имате акаунт, и след това само колкото изисква законът (например счетоводни документи).'] },
       { h: 'Вашите права', p: ['Имате право на достъп, поправка, изтриване, ограничаване и преносимост на данните си, както и на жалба до Комисията за защита на личните данни.'] },
     ],
@@ -91,12 +91,12 @@ const PRIVACY: Record<'bg' | 'en', Doc> = {
         p: [
           'Account: name, email and password (stored only as a hash).',
           'Order: club name, city, phone, domain and the notes you fill in.',
-          'Payment: handled by Paddle. We receive only the payment status and subscription identifiers, never card details.',
+          'Payment: by bank transfer or cash; we keep only the accounting records (invoices).',
         ],
       },
       { h: 'Why', p: ['To fulfil your order, run the service, contact you about it and meet our accounting obligations.'] },
       { h: 'Students’ data', p: ['We process the club’s student data on the club’s behalf. The club is the controller of that data and we are the processor.'] },
-      { h: 'Where it is stored', p: ['In our Supabase database, and with Paddle for payments. We do not sell or share data with advertisers. The site uses no advertising or tracking cookies.'] },
+      { h: 'Where it is stored', p: ['In our Supabase database. We do not sell or share data with advertisers. The site uses no advertising or tracking cookies.'] },
       { h: 'How long', p: ['While you have an account, and afterwards only as long as the law requires (for example accounting records).'] },
       { h: 'Your rights', p: ['You have the right to access, correct, delete, restrict and port your data, and to complain to the Bulgarian Commission for Personal Data Protection.'] },
     ],

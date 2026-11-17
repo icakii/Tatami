@@ -5,12 +5,19 @@
 
 export type PlanId = 'site' | 'club' | 'club_pro' | 'store' | 'custom'
 
+// 2026-11-17: no online payments for now. Every order is a request; we agree
+// the price with the club and they pay us by bank transfer or cash. Prices on
+// the site are examples ("from ..."). Flip to true to bring Paddle checkout back.
+export const ONLINE_PAYMENTS = false
+
 export interface Plan {
   id: PlanId
   setup: number
   monthly: number
-  // Quoted plans show "from" prices and can only be ordered as an inquiry.
+  // Shown as "from" prices and ordered as a request (always, while ONLINE_PAYMENTS is off).
   quoted: boolean
+  // The three main plans get the big cards; the rest sit under "by quote".
+  main: boolean
   setupPriceId?: string
   monthlyPriceId?: string
 }
@@ -41,11 +48,11 @@ const ids = PRICE_IDS[PADDLE_ENV]
 const orUndefined = (id: string) => id || undefined
 
 export const PLANS: Plan[] = [
-  { id: 'site', setup: 250, monthly: 29, quoted: false, setupPriceId: orUndefined(ids.site.setup), monthlyPriceId: orUndefined(ids.site.monthly) },
-  { id: 'club', setup: 350, monthly: 110, quoted: false, setupPriceId: orUndefined(ids.club.setup), monthlyPriceId: orUndefined(ids.club.monthly) },
-  { id: 'club_pro', setup: 650, monthly: 149, quoted: false, setupPriceId: orUndefined(ids.club_pro.setup), monthlyPriceId: orUndefined(ids.club_pro.monthly) },
-  { id: 'store', setup: 800, monthly: 79, quoted: true },
-  { id: 'custom', setup: 1500, monthly: 149, quoted: true },
+  { id: 'site', setup: 200, monthly: 25, quoted: !ONLINE_PAYMENTS, main: true, setupPriceId: orUndefined(ids.site.setup), monthlyPriceId: orUndefined(ids.site.monthly) },
+  { id: 'club', setup: 300, monthly: 89, quoted: !ONLINE_PAYMENTS, main: true, setupPriceId: orUndefined(ids.club.setup), monthlyPriceId: orUndefined(ids.club.monthly) },
+  { id: 'club_pro', setup: 500, monthly: 129, quoted: !ONLINE_PAYMENTS, main: true, setupPriceId: orUndefined(ids.club_pro.setup), monthlyPriceId: orUndefined(ids.club_pro.monthly) },
+  { id: 'store', setup: 700, monthly: 69, quoted: true, main: false },
+  { id: 'custom', setup: 1200, monthly: 129, quoted: true, main: false },
 ]
 
 export const planById = (id: string | null | undefined): Plan =>
