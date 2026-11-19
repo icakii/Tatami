@@ -3,6 +3,7 @@ import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { AuthShell, FormError, inputClass, labelClass, primaryButton } from '../components/AuthShell'
+import { ClubSetupFields, emptySetup, type ClubSetup } from '../components/ClubSetupFields'
 import { useAuth } from '../hooks/useAuth'
 import { useCreateOrder, usePaddle, useSubmitInquiry, type DomainOption } from '../hooks/useOrders'
 import { DOMAIN_EUR, PLANS, planById, type PlanId } from '../lib/paddle'
@@ -16,6 +17,8 @@ export function Order() {
   const createOrder = useCreateOrder()
   const submitInquiry = useSubmitInquiry()
   const [sent, setSent] = useState(false)
+  // The club's setup (halls, groups, coaches...) for plans with the app.
+  const [setup, setSetup] = useState<ClubSetup>(emptySetup)
   const { ready, openCheckout } = usePaddle(() => navigate('/account?paid=1'))
 
   const [form, setForm] = useState({
@@ -70,7 +73,8 @@ export function Order() {
         openCheckout({ id, email, domain_option: domainOption, plan: plan.id })
       } else {
         // A request goes through the server, signed in or not.
-        await submitInquiry.mutateAsync({ ...details, website: form.website })
+        const withApp = plan.id === 'club' || plan.id === 'club_pro'
+        await submitInquiry.mutateAsync({ ...details, website: form.website, setup: withApp ? setup : undefined })
         if (session) navigate('/account?inquiry=1')
         else setSent(true)
       }
@@ -179,6 +183,12 @@ export function Order() {
             {t('order.extrasNote')}
           </span>
         </label>
+
+        {(plan.id === 'club' || plan.id === 'club_pro') && (
+          <div className="rounded-3xl border border-straw/20 bg-straw/[0.03] p-5">
+            <ClubSetupFields value={setup} onChange={setSetup} />
+          </div>
+        )}
 
         <fieldset>
           <legend className={labelClass}>{t('pricing.domainTitle')}</legend>

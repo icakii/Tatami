@@ -507,5 +507,43 @@
       "confirm": "Add",
       "opened": "Opened as an app"
     }
+  },
+  "setup": {
+    "title": "Club details",
+    "body": "Optional, but it lets us set everything up without extra questions. Anything you skip we'll ask on the call.",
+    "halls": "Halls",
+    "addHall": "Add a hall",
+    "hallName": "Hall name",
+    "hallAddress": "Address",
+    "groups": "Groups",
+    "groupsHint": "Each group with its age or level and when it trains.",
+    "addGroup": "Add a group",
+    "groupName": "Name (e.g. Beginners 7-10)",
+    "groupAges": "Age / level",
+    "groupSchedule": "Days and times (e.g. Mon & Wed 17:30-18:30)",
+    "groupHall": "Hall",
+    "groupFee": "Monthly fee (€)",
+    "coaches": "Coaches",
+    "coachesHint": "Each gets their own admin login.",
+    "addCoach": "Add a coach",
+    "coachName": "Full name",
+    "coachPhone": "Phone",
+    "coachEmail": "Email",
+    "roleOwner": "Owner",
+    "roleCoach": "Coach",
+    "belts": "Belts",
+    "beltsKyu": "Kyu and dan (karate)",
+    "beltsColors": "Colours only",
+    "beltsOther": "Other (we'll ask)",
+    "accent": "Club colour",
+    "accentHint": "Buttons and accents in the app.",
+    "extras": "Extras",
+    "extra": {
+      "grades": "Coach grades (stars)",
+      "qr": "QR check-in at the hall",
+      "store": "Store (gis, belts)"
+    },
+    "logoNote": "Email us your logo after the request, in the best quality you have.",
+    "remove": "Remove"
   }
 }

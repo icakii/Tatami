@@ -67,7 +67,7 @@ export function useCreateOrder() {
 // writes the row server-side so visitors don't need to sign up first.
 export function useSubmitInquiry() {
   return useMutation({
-    mutationFn: async (order: Omit<NewOrder, 'status'> & { website: string }) => {
+    mutationFn: async (order: Omit<NewOrder, 'status'> & { website: string; setup?: unknown }) => {
       const { data, error } = await supabase.functions.invoke('submit-inquiry', { body: order })
       if (error) {
         const ctx = (error as { context?: Response }).context
